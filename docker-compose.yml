@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  user-alert:
+    build: .
+    image: user-alert
+    container_name: user-alert-server
+    ports:
+      - "8080:8080"
+
+  db-alert:
+    image: postgres:15
+    container_name: db-alert
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=useralert
+      - POSTGRES_USER=stud
+      - POSTGRES_PASSWORD=stud
